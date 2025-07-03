@@ -35,7 +35,7 @@ class _RegisterViewState extends State<RegisterView> {
         name: _fullNameController.text.trim(),
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
-        phone: '', // Pass empty values if backend requires
+        phone: '',
         country: '',
         province: '',
       ),
@@ -64,108 +64,127 @@ class _RegisterViewState extends State<RegisterView> {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: const Color(0xFFF9F9FB),
+          backgroundColor: const Color(0xFFF4F4F6),
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Center(
                     child: Image.asset(
                       'assets/logo/removed-blacklogo.jpg',
-                      height: 100,
+                      height: 80,
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  const Text(
-                    "Create your account",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
+                  const SizedBox(height: 20),
+                  const Center(
+                    child: Text(
+                      "Welcome to GharSewa",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF1C1C1E),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    "Sign up with your email and password",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  const Center(
+                    child: Text(
+                      "Create your account",
+                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                    ),
                   ),
                   const SizedBox(height: 30),
-
-                  _buildTextField(
-                    hint: "Full Name",
-                    icon: Icons.person_outline,
-                    controller: _fullNameController,
-                  ),
-                  _buildTextField(
-                    hint: "Email",
-                    icon: Icons.email_outlined,
-                    controller: _emailController,
-                    inputType: TextInputType.emailAddress,
-                  ),
-                  _buildPasswordField(),
-
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: _agreeTerms,
-                        onChanged: (value) {
-                          setState(() => _agreeTerms = value!);
-                        },
+                  Material(
+                    elevation: 3,
+                    borderRadius: BorderRadius.circular(16),
+                    child: Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      const Expanded(
-                        child: Text.rich(
-                          TextSpan(
-                            text: "I agree to the ",
+                      child: Column(
+                        children: [
+                          _buildTextField(
+                            hint: "Full Name",
+                            icon: Icons.person_outline,
+                            controller: _fullNameController,
+                          ),
+                          _buildTextField(
+                            hint: "Email",
+                            icon: Icons.email_outlined,
+                            controller: _emailController,
+                            inputType: TextInputType.emailAddress,
+                          ),
+                          _buildPasswordField(),
+
+                          Row(
                             children: [
-                              TextSpan(
-                                text: "Terms & Conditions",
-                                style: TextStyle(
-                                  color: Color(0xFF8648DA),
-                                  fontWeight: FontWeight.bold,
+                              Checkbox(
+                                value: _agreeTerms,
+                                onChanged: (value) {
+                                  setState(() => _agreeTerms = value!);
+                                },
+                              ),
+                              const Expanded(
+                                child: Text.rich(
+                                  TextSpan(
+                                    text: "I agree to the ",
+                                    children: [
+                                      TextSpan(
+                                        text: "Terms & Conditions",
+                                        style: TextStyle(
+                                          color: Color(0xFF6C4AB6),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      onPressed:
-                          _agreeTerms && !state.isLoading
-                              ? _handleSignup
-                              : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF8648DA),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child:
-                          state.isLoading
-                              ? const CircularProgressIndicator(
-                                color: Colors.white,
-                              )
-                              : const Text(
-                                "Sign Up",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed:
+                                  _agreeTerms && !state.isLoading
+                                      ? _handleSignup
+                                      : null,
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                                backgroundColor: const Color(0xFF6C4AB6),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
+                              child:
+                                  state.isLoading
+                                      ? const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      )
+                                      : const Text(
+                                        "Sign Up",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -182,14 +201,13 @@ class _RegisterViewState extends State<RegisterView> {
                         child: const Text(
                           "Sign In",
                           style: TextStyle(
-                            color: Color(0xFF8648DA),
+                            color: Color(0xFF6C4AB6),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
                 ],
               ),
             ),
@@ -211,10 +229,12 @@ class _RegisterViewState extends State<RegisterView> {
         controller: controller,
         keyboardType: inputType,
         decoration: InputDecoration(
+          prefixIcon: Icon(icon, color: Colors.grey[600]),
           hintText: hint,
-          prefixIcon: Icon(icon),
+          hintStyle: const TextStyle(color: Colors.grey),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: const Color(0xFFF9F9FB),
+          contentPadding: const EdgeInsets.symmetric(vertical: 18),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
@@ -232,13 +252,18 @@ class _RegisterViewState extends State<RegisterView> {
         obscureText: _obscureText,
         decoration: InputDecoration(
           hintText: "Password",
-          prefixIcon: const Icon(Icons.lock_outline),
+          hintStyle: const TextStyle(color: Colors.grey),
+          prefixIcon: const Icon(Icons.lock_outline, color: Colors.grey),
           suffixIcon: IconButton(
-            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+            icon: Icon(
+              _obscureText ? Icons.visibility_off : Icons.visibility,
+              color: Colors.grey,
+            ),
             onPressed: () => setState(() => _obscureText = !_obscureText),
           ),
           filled: true,
-          fillColor: Colors.white,
+          fillColor: const Color(0xFFF9F9FB),
+          contentPadding: const EdgeInsets.symmetric(vertical: 18),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
