@@ -74,7 +74,7 @@ class _RegisterViewState extends State<RegisterView> {
                   const SizedBox(height: 20),
                   Center(
                     child: Image.asset(
-                      'assets/logo/removed-blacklogo.jpg',
+                      'assets/logo/removed-blacklogo.png',
                       height: 80,
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ghar_sewa/features/login/presentation/view_model/login_event.dart';
 import 'package:ghar_sewa/features/login/presentation/view_model/login_state.dart';
 import 'package:ghar_sewa/features/login/presentation/view_model/login_view_model.dart';
+import 'package:ghar_sewa/view/Dashboard_screen.dart';
 import 'package:ghar_sewa/view/main_navbar_page.dart';
 
 class LoginView extends StatefulWidget {
@@ -58,7 +59,9 @@ class _LoginViewState extends State<LoginView> {
           Future.delayed(const Duration(milliseconds: 500), () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => const MainNavbarPage()),
+              MaterialPageRoute(
+                builder: (_) => const BloodBankDashboardScreen(),
+              ),
             );
           });
         }
@@ -81,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
                   const SizedBox(height: 40),
                   Center(
                     child: Image.asset(
-                      'assets/logo/removed-blacklogo.jpg',
+                      'assets/logo/removed-blacklogo.png',
                       height: 80,
                     ),
                   ),
